@@ -4,10 +4,10 @@ from EmotionDetection.emotion_detection import emotion_detector
 app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
-def emotion_detector():
+def emot_detector():
     user_text = request.args.get('textToAnalyze')
-    response = sentiment_analyzer(user_text)
-    anger = response['label']
+    response = emotion_detector(user_text)
+    anger = response['anger']
     disgust = response['disgust']
     fear = response['fear']
     joy = response['joy']
@@ -15,7 +15,8 @@ def emotion_detector():
     dominant_emotion = response['dominant_emotion']
 
     return f"For the given statement, the system response is 'anger': {anger}, \
-    'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}. The dominant emotion is {dominant_emotion}."
+    'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and 'sadness': {sadness}. \
+    The dominant emotion is {dominant_emotion}."
 
 @app.route("/")
 def render_index_page():
